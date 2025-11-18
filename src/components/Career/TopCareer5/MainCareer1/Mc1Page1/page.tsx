@@ -1,0 +1,213 @@
+// app/why-engineering/page.tsx
+import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Why Study Engineering In Australia",
+  description: "Reasons and benefits of pursuing Engineering studies in Australia",
+};
+const UNIVERSITIES = [
+  { img: "/images/tuuk3Img1.png", title: "University of Oxford", link: "/topunis/topuniversityuk/uk1uni" },
+  { img: "/images/tuuk3Img2.png", title: "University of Cambridge", link: "/topunis/topuniversityuk/uk2uni" },
+  { img: "/images/tuuk3Img3.png", title: "Imperial College London", link: "/topunis/topuniversityuk/uk3uni" },
+  { img: "/images/tuuk3Img4.png", title: "London School of Economics and Political Science", link: "/topunis/topuniversityuk/uk4uni" },
+  { img: "/images/tuuk3Img5.png", title: "University College London", link: "/topunis/topuniversityuk/uk5uni" },
+  { img: "/images/tuuk3Img6.png", title: "University of Edinburgh", link: "/topunis/topuniversityuk/uk6uni" },
+  ];
+const REASONS = [
+  {
+    icon: (
+      <Image
+        src="/images/mcpage1Img1.svg"
+        alt="icon-university"
+        width={40}
+        height={40}
+        className="w-13 h-13"
+      />
+    ),
+    text: (
+      <>
+       Nursing and health programs accredited by <br/>the Nursing and Midwifery Council (NMC) and <br/> globally recognised.
+      </>
+    ),
+  },
+  {
+    icon: (
+      <Image
+        src="/images/mcpage1Img2.svg"
+        alt="icon-graduates"
+        width={40}
+        height={40}
+        className="w-13 h-13"
+      />
+    ),
+    text: (
+      <>
+        Strong practical focus with hospital<br/> placements integrated into degrees.
+      </>
+    ),
+  },
+  {
+    icon: (
+      <Image
+        src="/images/mcpage1Img5.svg"
+        alt="icon-industry"
+        width={40}
+        height={40}
+        className="w-13 h-13"
+      />
+    ),
+    text: (
+      <>
+       High demand for qualified nurses and <br/>healthcare professionals within the NHS.
+      </>
+    ),
+  },
+  {
+    icon: (
+      <Image
+        src="/images/mcpage1Img4.svg"
+        alt="icon-briefcase"
+        width={40}
+        height={40}
+        className="w-13 h-13"
+      />
+    ),
+    text: (
+      <>
+       Excellent graduate employability and post-<br/>study work visa opportunities.
+      </>
+    ),
+  },
+  {
+    icon: (
+      <Image
+        src="/images/mc2page1Img5.svg"
+        alt="icon-users"
+        width={40}
+        height={40}
+        className="w-13 h-13"
+      />
+    ),
+    text: (
+      <>
+       Pathways to Permanent Residency (PR) <br/>through skilled worker routes.
+      </>
+    ),
+  },
+];
+
+export default function Mc1Page1 () {
+  return (
+    <main className="min-h-screen bg-white px-6">
+      {/* Header */}
+      <div className="mx-auto max-w-screen-xl text-center mb-20">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#545454]">
+          Why Study Healthcare & Nursing in The<br/> UK
+        </h1>
+      </div>
+
+      {/* Reasons Section */}
+      <section className="mx-auto max-w-screen-xl space-y-14">
+        {REASONS.map((item, i) => {
+          const isEven = i % 2 === 0;
+
+          return (
+            <div
+              key={i}
+              className={`flex items-center w-full ${
+                isEven ? "md:justify-start" : "md:justify-end"
+              }`}
+            >
+              {/* Inner flex: icon + text */}
+              <div
+                className={`flex items-center w-full ${
+                  isEven
+                    ? "md:justify-start text-left ml-20"
+                    : "md:justify-end text-left mr-20"
+                }`}
+              >
+                {isEven ? (
+                  // --- Left Side Icon + Text ---
+                  <>
+                    {/* Icon container */}
+                    <div className="flex-shrink-0 flex justify-center items-center ml-10 ">
+                      {item.icon}
+                    </div>
+
+                    {/* Text container */}
+                    <div className="max-w-2xl text-[#545454] pl-8">
+                      <p className="text-xl md:text-2xl font-bold leading-tight">
+                        {item.text}
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  // --- Right Side Icon + Text ---
+                  <>
+                  <div className="flex-shrink-0 flex justify-center items-center pr-4 ">
+                      {item.icon}
+                    </div> 
+
+                    {/* Text container */}
+                    <div className="max-w-2xl text-[#545454] mr-6">
+                      <p className="text-xl md:text-2xl font-bold leading-tight">
+                        {item.text}
+                      </p>
+                    </div>
+
+                    {/* Icon container */}
+                    
+                  </>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </section>
+      <div className="max-w-[1100px] mx-auto px-6 mt-30">
+              {/* Heading */}
+              <header className="text-center mb-16 mt-12">
+                <h1 className="text-3xl md:text-4xl font-bold text-[#545454]">
+                  Top Universities in the UK
+                </h1>
+              </header>
+      
+              {/* Card Grid */}
+              <section className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
+                {UNIVERSITIES.map((uni, i) => (
+                  <div
+                    key={i}
+                    className="relative w-[320px] flex flex-col items-center overflow-hidden bg-white hover:bg-white hover:shadow-lg transition-all duration-300 pb-12 rounded-2xl"
+                  >
+                    {/* Image */}
+                    <div className="relative w-full h-[200px] overflow-hidden rounded-t-2xl">
+                      <Image
+                        src={uni.img}
+                        alt={uni.title}
+                        fill
+                        className="object-cover"
+                        priority={i < 3}
+                      />
+                    </div>
+      
+                    {/* Content */}
+                    <div className="flex flex-col items-center justify-between py-6 space-y-4 w-full">
+                      <h3 className="text-lg md:text-lg font-bold text-[#545454] text-center">
+                        {uni.title}
+                      </h3>
+                      <Link
+                  href={uni.link}
+                        className="bg-[#37D7D9] text-white text-xs px-6 py-1.5  font-black rounded-full shadow-xl hover:shadow-2xl transition-all duration-300"
+                      >
+                        Know more
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </section>
+            </div>
+    </main>
+  );
+}

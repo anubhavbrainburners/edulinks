@@ -1,0 +1,312 @@
+"use client";
+
+import React, { useState } from "react";
+
+type Item = { id: number; label: React.ReactNode };
+
+const ITEMS: Item[] = [
+  { id: 1, label: <>College of Business</> },
+  { id: 2, label: <>College of Sciences</> },
+  { id: 3, label: <>College of Creative Arts</> },
+  { id: 4, label: <> College of Health</> },
+];
+
+export default function TU54() {
+  const [selected, setSelected] = useState<number[]>([]);
+
+  const toggle = (id: number) =>
+    setSelected((s) =>
+      s.includes(id) ? s.filter((x) => x !== id) : [...s, id]
+    );
+
+  return (
+    <main >
+      {/* Header */}
+      <div className="text-center mt-20 mb-6">
+        <h1 className="text-3xl md:text-4xl font-bold text-[#545454]">
+          Popular Courses
+        </h1>
+      </div>
+
+      <div>
+        <div className="grid grid-cols-5 gap-6 items-start">
+          {/* LEFT - checkboxes */}
+          <aside
+            className="col-span-1 mt-20 px-18 pt-16 pb-70 w-[430px] sticky top-0 overflow-hidden"
+            style={{ backgroundColor: "#DFFFFF" }}
+          >
+            <div className="space-y-8">
+              {ITEMS.map((it) => {
+                const isChecked = selected.includes(it.id);
+                return (
+                  <div key={it.id} className="flex items-center gap-6">
+                    {/* Checkbox */}
+                    <label className="relative flex justify-center items-center cursor-pointer shrink-0 -ml-4 -mt-10">
+                      <input
+                        type="checkbox"
+                        className="peer sr-only"
+                        checked={isChecked}
+                        onChange={() => toggle(it.id)}
+                      />
+                      <span
+                        className={`w-7 h-7 rounded-md border-2 transition-all flex items-center justify-center ${
+                          isChecked
+                            ? "border-transparent bg-[#37D7D9]"
+                            : "bg-white border-white"
+                        }`}
+                        aria-hidden
+                      >
+                        <svg
+                          className={`w-4 h-4 transform ${
+                            isChecked
+                              ? "opacity-100 scale-100"
+                              : "opacity-0 scale-75"
+                          }`}
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="white"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </span>
+                    </label>
+
+                    {/* Label + underline */}
+                    <div className="flex-1">
+                      <div className="text-lg leading-6 text-black font-medium">
+                        {it.label}
+                      </div>
+
+                      <div className="h-2 mt-6 flex justify-center">
+                        <div className="w-[250px] h-0.5 bg-[linear-gradient(to_right,#DFFFFF_0%,#37D7D9_20%,#37D7D9_50%,#37D7D9_80%,#DFFFFF_100%)]" />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </aside>
+
+          {/* RIGHT - content area */}
+          <section className="col-span-4 mt-28 ml-50">
+            {/* Header Row */}
+            <div className="grid grid-cols-5 gap-4 items-center mb-8">
+              <div /> {/* empty for program title */}
+              <div className="text-base font-bold text-[#545454]">Duration</div>
+              <div className="text-base font-bold text-[#545454]">
+                Tuition Fee
+              </div>
+              <div className="text-base font-bold text-[#545454]">
+                Requirement
+              </div>
+              <div className="text-base font-bold text-[#545454]">Intake</div>
+            </div>
+
+            <div className="space-y-8">
+              {[...selected].sort((a, b) => a - b).map((id) => (
+                <div key={id} className="space-y-10">
+                  {/* -------- ID 1 -------- */}
+                  {id === 1 && (
+                    <>
+                      {/* Bachelor */}
+                      <div className="grid grid-cols-5 gap-4 items-start">
+                        <div className="col-span-1">
+                          <h3 className="font-semibold">
+                            Bachelor of Business
+                          </h3>
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                         3 years
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          NZD 42,000/year 
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          High School + IELTS 6.5
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          Intake: February & July
+                        </div>
+                      </div>
+
+                      {/* Master */}
+                      <div className="grid grid-cols-5 gap-4 items-start mt-4">
+                        <div className="col-span-1">
+                          <h3 className="font-semibold">
+                              Master of Business Administration (MBA)
+                          </h3>
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          1.5 years (Full-Time)
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                             NZD 58,000
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                            Bachelor's in any field + 3 years experience + IELTS 6.5
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                           Intake: February
+                        </div>
+                      </div>
+
+                      <div className="h-2 mt-6 flex justify-center">
+                        <div className="w-[250px] h-0.5 bg-[linear-gradient(to_right,#DFFFFF_0%,#37D7D9_20%,#37D7D9_50%,#37D7D9_80%,#DFFFFF_100%)]" />
+                      </div>
+                    </>
+                  )}
+
+                  {/* -------- ID 2 -------- */}
+                  {id === 2 && (
+                    <>
+                      <div className="grid grid-cols-5 gap-4 items-start">
+                        <div className="col-span-1">
+                          <h3 className="font-semibold">
+                            Bachelor of Engineering (Honours)
+                          </h3>
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          4 years (full-time)
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          NZD 46,000/year
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          High School (Maths/Physics) + IELTS 6.5
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          Intake: February & July
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-5 gap-4 items-start mt-4">
+                        <div className="col-span-1">
+                          <h3 className="font-semibold">Master of Data Science</h3>
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          2 years (full-time)
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                           NZD 47,000/year
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          Bachelor's in Science/IT + IELTS 6.5
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          Intake: February
+                        </div>
+                      </div>
+
+                      <div className="h-2 mt-6 flex justify-center">
+                        <div className="w-[250px] h-0.5 bg-[linear-gradient(to_right,#DFFFFF_0%,#37D7D9_20%,#37D7D9_50%,#37D7D9_80%,#DFFFFF_100%)]" />
+                      </div>
+                    </>
+                  )}
+
+                  {/* -------- ID 3 -------- */}
+                  {id === 3 && (
+                    <>
+                      <div className="grid grid-cols-5 gap-4 items-start">
+                        <div className="col-span-1">
+                          <h3 className="font-semibold">
+                            Bachelor of Design (Hons)
+                          </h3>
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          4 Years (Full-Time)
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          NZD 44,000/year
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                           High School + Portfolio + IELTS 6.5
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          Intake: February
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-5 gap-4 items-start mt-4">
+                        <div className="col-span-1">
+                          <h3 className="font-semibold">
+                            Master of Fine Arts
+                          </h3>
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          2 Years (Full-Time)
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          NZD 45,000/year
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          Bachelor's in Arts/Design + Portfolio + IELTS 6.5
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          Intake: February
+                        </div>
+                      </div>
+
+                      <div className="h-2 mt-6 flex justify-center">
+                        <div className="w-[250px] h-0.5 bg-[linear-gradient(to_right,#DFFFFF_0%,#37D7D9_20%,#37D7D9_50%,#37D7D9_80%,#DFFFFF_100%)]" />
+                      </div>
+                    </>
+                  )}
+
+                  {/* -------- ID 4 -------- */}
+                  {id === 4 && (
+                    <>
+                      <div className="grid grid-cols-5 gap-4 items-start">
+                        <div className="col-span-1">
+                          <h3 className="font-semibold">
+                            Bachelor of Nursing
+                          </h3>
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          3 years (full-time)
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                           NZD 43,000/year
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          High School (Biology/Chemistry) + IELTS 6.5
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          Intake:  February
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-5 gap-4 items-start mt-4">
+                        <div className="col-span-1">
+                          <h3 className="font-semibold">Master of Public Health</h3>
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          2 years (full-time)
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          NZD 45,000/year
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          Bachelor's in Health/Science + IELTS 6.5
+                        </div>
+                        <div className="text-sm text-[#545454] flex items-center">
+                          February
+                        </div>
+                      </div>
+
+                      <div className="h-2 mt-6 flex justify-center">
+                        <div className="w-[250px] h-0.5 bg-[linear-gradient(to_right,#DFFFFF_0%,#37D7D9_20%,#37D7D9_50%,#37D7D9_80%,#DFFFFF_100%)]" />
+                      </div>
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  );
+}
