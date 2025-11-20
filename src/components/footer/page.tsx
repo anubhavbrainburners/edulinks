@@ -81,10 +81,10 @@ export default function Footer() {
 
         {/* Contact */}
         <div className="space-y-3">
-          <div className="flex items-center gap-2 text-gray-600">
+          {/* <div className="flex items-center gap-2 text-gray-600">
             <FiPhone size={25} className="text-black" />
             <span>+64 27 326 3612</span>
-          </div>
+          </div> */}
           <div className="flex items-center gap-2 pt-4 text-gray-600">
             <MdOutlineEmail size={25} className="text-black" />
             <span>admin@edulinks.io</span>
