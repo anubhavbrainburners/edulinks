@@ -106,7 +106,7 @@ export default function McMpage1() {
       {/* Header */}
       <div className="mx-auto max-w-screen-xl text-center mb-16">
         <h1 className="text-3xl font-bold text-[#545454] leading-snug">
-          Why Study Engineering In <br /> Australia
+          Why Study Engineering In Australia
         </h1>
       </div>
 

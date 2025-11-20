@@ -46,7 +46,7 @@ const About3: React.FC = () => {
 
           {/* Author */}
           <div className="mt-4 md:-mt-4 text-right">
-            <p className="text-gray-600 font-bold">- Anjan Singh, Founder.</p>
+            <p className="text-gray-600 font-bold">- Paramdip Singh, Founder.</p>
           </div>
         </div>
       </div>

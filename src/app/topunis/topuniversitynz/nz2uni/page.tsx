@@ -1,4 +1,5 @@
 import Footer from "@/components/footer/page";
+import Mheader from "@/components/HomePageMobile/Mheader/page";
 import TU21 from "@/components/TopUnis/TopUniversityNz/TopUni2Nz/TU21/page";
 import TU22 from "@/components/TopUnis/TopUniversityNz/TopUni2Nz/TU22/page";
 import TU23 from "@/components/TopUnis/TopUniversityNz/TopUni2Nz/TU23/page";
@@ -7,10 +8,12 @@ import TU25 from "@/components/TopUnis/TopUniversityNz/TopUni2Nz/TU25/page";
 import TU26 from "@/components/TopUnis/TopUniversityNz/TopUni2Nz/TU26/page";
 import TU27 from "@/components/TopUnis/TopUniversityNz/TopUni2Nz/TU27/page";
 import TU28 from "@/components/TopUnis/TopUniversityNz/TopUni2Nz/TU28/page";
+import TU21M from "@/components/TopUniversityMobile/TopUniversityNzMobile/TopUni2NzM/TU21UM/page";
 
 export default function Nz2Uni () {
     return (
-        <div className="pt-21">
+        <>
+        <div className="pt-21 hidden md:block">
             <TU21 />
             <TU22 />
             <TU23 />
@@ -21,5 +24,12 @@ export default function Nz2Uni () {
             <TU28 />
             <Footer />
         </div>
+        <div className="block md:hidden overflow-x-hidden">
+            <Mheader />
+            <main className="pt-21">
+                <TU21M />
+            </main>
+        </div>
+        </>
     )
 }

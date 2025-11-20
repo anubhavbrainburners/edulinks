@@ -3,6 +3,7 @@ import { FiPhone } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -98,11 +99,13 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between mt-6">
           {/* Logo (always first) */}
+          <Link href="/">
           <img
             src="/images/eduLogo.png"
             alt="EduLinks"
             className="w-40 md:w-48 mb-4 md:mb-0"
           />
+          </Link>
 
           {/* Social (always second) */}
           <div className="flex flex-col items-center md:items-end gap-3">

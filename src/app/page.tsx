@@ -29,7 +29,6 @@ export default function Home() {
         <Header />
         <main className="pt-21">
           <BelowHeader />
-          <Bar />
           <EduApp />
           <FlyImage />
           <Card />

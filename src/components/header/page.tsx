@@ -4,9 +4,15 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 
 function Header() {
+
+  //routes
+  const router = useRouter();
+
+  //states
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -35,13 +41,15 @@ function Header() {
       }`}
     >
       {/* Logo */}
-      <div className="flex items-center space-x-2">
-        <img
-          src="/images/eduLogo.png"
-          alt="EduLinks Logo"
-          className="h-10 ml-2"
-        />
-      </div>
+<div className="flex items-center space-x-2">
+  <Link href="/">
+    <img
+      src="/images/eduLogo.png"
+      alt="EduLinks Logo"
+      className="h-10 ml-2 cursor-pointer"
+    />
+  </Link>
+</div>
 
       {/* Desktop Navigation */}
 <nav
@@ -58,12 +66,12 @@ function Header() {
 
   {/* Study Destination Dropdown */}
   <div className="relative flex flex-row group">
-    <Link
-      href="/StudyDestinations"
+    <div
+      onClick={() => router.push('/StudyDestinations')}
       className="hover:text-[#37D7D9] cursor-pointer"
     >
       Study Destination 
-    </Link>
+    </div>
     <FaChevronDown className="text-[12px] mt-1 ml-1 transition-transform duration-300 group-hover:rotate-180" />
     <div
       className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white shadow-lg rounded-lg w-52 py-2 z-50"
@@ -263,7 +271,7 @@ function Header() {
 <div className="hidden md:flex space-x-2">
   <Link href="/contactus/aiassistant">
     <button className="border border-[#37D7D9] text-[#37D7D9] text-md px-3 py-2 rounded-full hover:bg-teal-50 hover:shadow-md hover:shadow-gray-400 transition-shadow duration-300 ease-in-out">
-      Edulink AI Assistant
+      Edulinks AI Assistant
     </button>
   </Link>
 

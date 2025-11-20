@@ -1,0 +1,185 @@
+"use client";
+import Image from "next/image";
+import React from "react";
+
+const UNIVERSITIES = [
+  { img: "/images/tuger3Img1.png", title: "Technical University of Munich", link:"" },
+  { img: "/images/tuger3Img2.png", title: "Ludwig Maximilian University of Munich", link:"" },
+  { img: "/images/tuger3Img3.png", title: "UHeidelberg University", link:"" },
+  { img: "/images/tuger3Img4.png", title: "Humboldt University of Berlin", link:"" },
+  { img: "/images/tuger3Img5.png", title: "RWTH Aachen University", link:"" },
+  { img: "/images/tuger3Img6.png", title: "Free University of Berlin", link:"" },
+  ];
+const REASONS = [
+  {
+    icon: (
+      <Image
+        src="/images/mcpage1Img1.svg"
+        alt="icon-university"
+        width={40}
+        height={40}
+        className="w-8 h-8"
+      />
+    ),
+    text: (
+      <>
+        Germany leads Europe in renewable energy production and innovation.
+      </>
+    ),
+  },
+  {
+    icon: (
+      <Image
+        src="/images/gradcap.svg"
+        alt="icon-graduates"
+        width={40}
+        height={40}
+        className="w-8 h-8"
+      />
+    ),
+    text: (
+      <>
+       Study at top universities focused on sustainability and green technology.
+      </>
+    ),
+  },
+  {
+    icon: (
+      <Image
+        src="/images/gradcap.svg"
+        alt="icon-industry"
+        width={40}
+        height={40}
+        className="w-8 h-8"
+      />
+    ),
+    text: (
+      <>
+       Low or no tuition fees at public universities.
+      </>
+    ),
+  },
+  {
+    icon: (
+      <Image
+        src="/images/mcpage1Img4.svg"
+        alt="icon-briefcase"
+        width={40}
+        height={40}
+        className="w-8 h-8"
+      />
+    ),
+    text: (
+      <>
+        Strong industry collaboration with companies like Siemens, Enercon, and Bosch.
+      
+      </>
+    ),
+  },
+  {
+    icon: (
+      <Image
+        src="/images/mcpage1Img5.svg"
+        alt="icon-users"
+        width={40}
+        height={40}
+        className="w-8 h-8"
+      />
+    ),
+    text: (
+      <>
+      Growing career opportunities in research, consulting, and sustainable engineering.
+      </>
+    ),
+  },
+   {
+    icon: (
+      <Image
+        src="/images/mc2page1Img5.svg"
+        alt="icon-briefcase"
+        width={40}
+        height={40}
+        className="w-8 h-8"
+      />
+    ),
+    text: (
+      <>
+       18-month post-study work visa And pathways to permanent residence.
+      </>
+    ),
+  },
+];
+
+export default function McM4page1() {
+  return (
+    <main className="min-h-screen bg-white px-6">
+      {/* Header */}
+      <div className="mx-auto max-w-screen-xl text-center mb-16">
+        <h1 className="text-3xl font-bold text-[#545454] leading-snug">
+          Why Study Renewable Energy & Sustainability in Germany
+        </h1>
+      </div>
+
+      {/* Reasons Section */}
+      <section className="mx-auto max-w-screen-lg flex flex-col space-y-10">
+        {REASONS.map((item, i) => (
+          <div
+            key={i}
+            className="flex items-start gap-5 text-left"
+          >
+            {/* Icon */}
+            <div className="flex-shrink-0">{item.icon}</div>
+
+            {/* Text */}
+            <p className="text-base md:text-xl font-semibold text-[#545454] leading-snug">
+              {item.text}
+            </p>
+          </div>
+        ))}
+      </section>
+
+      {/* Top Universities Section */}
+      <div className="max-w-[1100px] mx-auto px-2 mt-15">
+        <header className="text-center mb-12">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#545454]">
+            Top Universities In Germany
+          </h1>
+        </header>
+
+        <section className="grid grid-cols-2 gap-x-15 gap-y-6 justify-items-center">
+  {UNIVERSITIES.map((uni, i) => (
+    <div
+      key={i}
+      className="relative w-[190px] flex flex-col items-center overflow-hidden bg-white shadow-lg pb-6 rounded-2xl"
+    >
+      {/* Image */}
+      <div className="relative w-full h-[130px] overflow-hidden rounded-t-2xl">
+        <Image
+          src={uni.img}
+          alt={uni.title}
+          fill
+          className="object-cover"
+          priority={i < 3}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col items-center justify-between py-4 space-y-2 w-full">
+        <h3 className="text-sm sm:text-base font-bold text-[#545454] text-center">
+          {uni.title}
+        </h3>
+        <button
+          type="button"
+          className="bg-[#37D7D9] text-white text-[10px] sm:text-xs px-4 py-1.5 font-bold rounded-full shadow-md hover:shadow-xl transition-all duration-300"
+        >
+          Know more
+        </button>
+      </div>
+    </div>
+  ))}
+</section>
+
+      </div>
+    </main>
+  );
+}

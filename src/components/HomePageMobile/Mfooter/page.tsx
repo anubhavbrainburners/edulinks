@@ -100,10 +100,10 @@ export default function Mfooter() {
             </div>
 
             {/* Contact */}
-          <div className="flex text-gray-600 mt-6 translate-x-1">
+          {/* <div className="flex text-gray-600 mt-6 translate-x-1">
             <FiPhone size={20} className="text-black" />
             <span className="whitespace-nowrap">+64 27 326 3612</span>
-          </div>
+          </div> */}
           <div className="flex text-gray-600 mt-4 whitespace-normal translate-x-3">
             <MdOutlineEmail size={20} className="text-black" />
             <span>admin@edulinks.io</span>
