@@ -3,7 +3,6 @@ import React from 'react';
 const page = () => {
     return (
         <>
-
             <div className="flex items-center justify-center bg-[#DFFFFF] px-6 py-24">
                 <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
                     {/* Left Text Section */}

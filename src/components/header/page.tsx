@@ -276,12 +276,11 @@ function Header() {
     </button>
   </Link>
 
-  {/* <Link href="/contactus">
+   <Link href="/contactus">
     <button className="text-md flex justify-center items-center text-white rounded-full hover:shadow-md hover:shadow-gray-400 transition-shadow duration-300 ease-in-out">
-      Register/Sign In
       <Image src="/profileman.svg" width={600} height={400} alt="profile" className="w-10 h-10" />
     </button>
-  </Link> */}
+  </Link> 
 </div>
 
 
