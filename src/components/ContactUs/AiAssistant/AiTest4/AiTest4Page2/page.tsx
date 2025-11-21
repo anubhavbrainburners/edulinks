@@ -1,13 +1,27 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { FiAlertCircle } from "react-icons/fi";
 import { FaRegClock } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function AiTest4Page2() {
+  const router = useRouter();
+
+  // states
+  const [accepted, setAccepted] = useState(false);
+
+  const handleStart = () => {
+    if (!accepted) return; // safety check
+    // router.push("/contactus/aiassistant/aitest4/ai4q1");
+    router.push("/testlink")
+  };
+
   return (
     <main className="min-h-screen bg-white">
       <div className="max-w-5xl mx-auto px-6 py-8">
+
         {/* Quick information card */}
         <div className="mx-auto max-w-3xl">
           <div
@@ -19,9 +33,7 @@ export default function AiTest4Page2() {
             }}
           >
             <div className="flex items-center justify-center gap-3">
-              <div>
-                <FiAlertCircle size={40} color="#37D7D9" />
-              </div>
+              <FiAlertCircle size={40} color="#37D7D9" />
               <h2 className="text-2xl md:text-3xl font-bold text-[#545454]">
                 Quick information
               </h2>
@@ -43,7 +55,7 @@ export default function AiTest4Page2() {
           What you’ll get
         </h3>
 
-        {/* Grid of cards image */}
+        {/* Image */}
         <div className="mt-6 mr-2 flex justify-center">
           <Image
             src="/images/aitest4page2Img.png"
@@ -63,30 +75,38 @@ export default function AiTest4Page2() {
             Let’s get started with your personalized experience.
           </p>
 
+          {/* Checkbox */}
           <div className="flex justify-center items-center gap-3 mb-6">
             <input
               type="checkbox"
               id="terms"
+              checked={accepted}
+              onChange={(e) => setAccepted(e.target.checked)}
               className="w-6 h-6 accent-[#37D7D9] border-2 border-[#37D7D9] rounded-4xl cursor-pointer"
             />
             <label htmlFor="terms" className="text-[#666666] text-base">
               I accept the{" "}
-              <a
-                href="#"
-                className="text-[#37D7D9] underline hover:opacity-80"
-              >
+              <a href="#" className="text-[#37D7D9] underline hover:opacity-80">
                 Terms & Conditions
               </a>
             </label>
           </div>
 
-          <Link href="/contactus/aiassistant/aitest4/ai4q1">
-          <button className="bg-[#37D7D9] text-white text-xl font-black rounded-full px-8 py-2 shadow-md hover:opacity-90 transition cursor-pointer">
+          {/* Button using router.push */}
+          <button
+            onClick={handleStart}
+            disabled={!accepted}
+            className={`text-white text-xl font-black rounded-full px-8 py-2 shadow-md transition
+              ${accepted
+                ? "bg-[#37D7D9] hover:opacity-90 cursor-pointer"
+                : "bg-gray-300 cursor-not-allowed"
+              }
+            `}
+          >
             Get Started
           </button>
-          </Link>
         </div>
       </div>
-    </main>
-  );
+    </main>
+  );
 }

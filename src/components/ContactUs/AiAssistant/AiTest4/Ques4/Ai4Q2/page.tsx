@@ -20,7 +20,9 @@ export default function Ai4Q2() {
 
   const handleNext = () => {
     // ✅ Navigate to the next step
-    router.push("/contactus/aiassistant/aitest4/ai4q1/ai4q2/ai4q3"); // <-- change this path to your actual next route
+    if (selected === null) return
+    localStorage.setItem("selectedSection", options[selected]);
+    router.push("/contactus/aiassistant/aitest4/ai4q1/ai4q2/ai4q3"); 
   };
 
   return (
@@ -130,7 +132,13 @@ export default function Ai4Q2() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="flex items-center gap-3 bg-[#37D7D9] text-white text-xl font-black rounded-full px-6 py-2 shadow-md hover:cursor-pointer"
+                  disabled={selected === null}
+                  className={`flex items-center gap-3 text-xl font-black rounded-full px-6 py-2 shadow-md transition
+                    ${selected !== null
+                      ? "bg-[#37D7D9] text-white hover:cursor-pointer hover:opacity-90"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    }
+                  `}
                 >
                   Next <FaArrowRightLong />
                 </button>

@@ -71,12 +71,10 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold text-lg mb-4">Services</h3>
           <ul className="space-y-2 text-black">
-            <li><a href="/services/student-visa" className="hover:text-cyan-600">Student Visa</a></li>
-            <li><a href="/services/career-guidance" className="hover:text-cyan-600">Personalised Career Guidance</a></li>
-            <li><a href="/services/ai-jackpot" className="hover:text-cyan-600">Edulinks AI Jackpot</a></li>
-            <li><a href="/services/scholarship" className="hover:text-cyan-600">Scholarship Assessment</a></li>
-            <li><a href="/services/loan" className="hover:text-cyan-600">Loan Guidance</a></li>
-            <li><a href="/services/post-landing" className="hover:text-cyan-600">Post Landing Services</a></li>
+            <li><a href="/services/student-visa" className="hover:text-cyan-600">AI-Powered Tests</a></li>
+            <li><a href="/services/career-guidance" className="hover:text-cyan-600">English Language Assesment</a></li>
+            <li><a href="/services/ai-jackpot" className="hover:text-cyan-600">Community Hub</a></li>
+            <li><a href="/services/scholarship" className="hover:text-cyan-600">AI Guidance & Counsellor Support</a></li>
           </ul>
         </div>
 
@@ -100,11 +98,11 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between mt-6">
           {/* Logo (always first) */}
           <Link href="/">
-          <img
-            src="/images/eduLogo.png"
-            alt="EduLinks"
-            className="w-40 md:w-48 mb-4 md:mb-0"
-          />
+            <img
+              src="/images/eduLogo.png"
+              alt="EduLinks"
+              className="w-40 md:w-48 mb-4 md:mb-0"
+            />
           </Link>
 
           {/* Social (always second) */}

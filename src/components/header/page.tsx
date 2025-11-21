@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 
 function Header() {
@@ -275,11 +276,12 @@ function Header() {
     </button>
   </Link>
 
-  <Link href="/contactus">
-    <button className="bg-[#37D7D9] text-md text-white px-3 py-2 rounded-full hover:bg-[#00B7C1] hover:shadow-md hover:shadow-gray-400 transition-shadow duration-300 ease-in-out">
+  {/* <Link href="/contactus">
+    <button className="text-md flex justify-center items-center text-white rounded-full hover:shadow-md hover:shadow-gray-400 transition-shadow duration-300 ease-in-out">
       Register/Sign In
+      <Image src="/profileman.svg" width={600} height={400} alt="profile" className="w-10 h-10" />
     </button>
-  </Link>
+  </Link> */}
 </div>
 
 
