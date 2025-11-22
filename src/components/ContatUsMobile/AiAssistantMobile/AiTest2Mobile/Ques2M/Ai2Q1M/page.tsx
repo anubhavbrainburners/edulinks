@@ -31,7 +31,7 @@ export default function Ai2Q1M() {
 
   function handleNext() {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest2/ai2q1/ai2q2"); // <-- replace with your next route (e.g. "/CountrySelMobile2")
+      router.push("/aiassistant/visaquery?step=application-status"); // <-- replace with your next route (e.g. "/CountrySelMobile2")
     }
   }
 

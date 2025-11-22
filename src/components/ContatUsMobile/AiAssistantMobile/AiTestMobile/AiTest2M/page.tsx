@@ -81,7 +81,12 @@ export default function AiTest2M() {
           </div>
 
           {/* ✅ Static link with Next.js */}
-          <Link href="/contactus/aiassistant/aitest/aiq1">
+          <Link
+            href={{
+              pathname: "/aiassistant/universitycourse",
+              query: { step: "study-destination" },
+            }}
+          >
             <button className="bg-[#37D7D9] text-white text-md font-black rounded-full px-6 py-2 shadow-lg shadow-gray-300">
               Get Started
             </button>

@@ -14,8 +14,7 @@ export default function AiTest4Page2() {
 
   const handleStart = () => {
     if (!accepted) return; // safety check
-    // router.push("/contactus/aiassistant/aitest4/ai4q1");
-    router.push("/testlink")
+    router.push("/aiassistant/englishproficiency?step=test-selection");
   };
 
   return (

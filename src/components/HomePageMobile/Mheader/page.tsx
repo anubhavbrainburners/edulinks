@@ -199,7 +199,7 @@ function Mheader() {
 
           {/* Buttons */}
           <Link
-            href="/contactus/aiassistant"
+            href="/aiassistant"
             onClick={() => setMenuOpen(false)}
             className="border border-[#37D7D9] text-[#37D7D9] text-sm px-4 py-2 rounded-full hover:bg-teal-50 transition"
           >

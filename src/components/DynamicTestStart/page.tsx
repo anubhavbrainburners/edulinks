@@ -1,0 +1,253 @@
+// import React from 'react';
+
+// const page = () => {
+//     return (
+//         <>
+//             <div className="flex items-center justify-center bg-[#DFFFFF] px-6 py-24">
+//                 <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+//                     {/* Left Text Section */}
+//                     <div className="md:w-1/2 text-center md:text-left pl-20 md:pl-28">
+//                         <h1 className="text-4xl md:text-[40px] font-bold text-[#545454] mb-2">
+//                             Career Pathway Test
+//                         </h1>
+//                         <div
+//                             className="w-70 h-[2px] mb-2 mx-auto md:mx-0 md:ml-[120px]"
+//                             style={{
+//                                 background:
+//                                     "linear-gradient(to right, #DFFFFF, #37D7D9, #37D7D9, #DFFFFF)",
+//                             }}
+//                         ></div>
+
+//                         <p className="text-[#666666] text-lg leading-normal">
+//                             Discover the top career paths on your interests and strengths
+//                             through our comprehensive assessment.
+//                         </p>
+//                     </div>
+
+//                     {/* Right Image Section */}
+//                     <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
+//                         <Image
+//                             src="/images/aitest3page1Img.png"
+//                             alt="Career Pathway Illustration"
+//                             width={460}
+//                             height={470}
+//                             className="object-contain"
+//                         />
+//                     </div>
+//                 </div>
+//             </div>
+//             <main className="min-h-screen bg-white">
+//                 <div className="max-w-5xl mx-auto px-6 py-8">
+//                     {/* Quick information card */}
+//                     <div className="mx-auto max-w-3xl">
+//                         <div
+//                             className="border rounded-4xl py-4 text-center shadow-sm"
+//                             style={{
+//                                 borderColor: "#37D7D9",
+//                                 borderWidth: 1,
+//                                 boxShadow: "0 6px 18px rgba(0,0,0,0.04)",
+//                             }}
+//                         >
+//                             <div className="flex items-center justify-center gap-3">
+//                                 <div>
+//                                     <FiAlertCircle size={40} color="#37D7D9" />
+//                                 </div>
+//                                 <h2 className="text-2xl md:text-3xl font-bold text-[#545454]">
+//                                     Quick information
+//                                 </h2>
+//                             </div>
+
+//                             <div className="mt-4 inline-flex items-center justify-center gap-3 rounded-full border-[1px] border-[#37D7D9] bg-[#DFFFFF] px-1 py-0.5">
+//                                 <FaRegClock className="text-[#66666666] w-5 h-5" />
+//                                 <span className="text-[#666666] text-sm">2–5 minutes</span>
+//                             </div>
+
+//                             <p className="mt-4 text-[#666666] text-3xl md:text-xl">
+//                                 Get personalized recommendation based on your preferences
+//                             </p>
+//                         </div>
+//                     </div>
+
+//                     {/* Section title */}
+//                     <h3 className="mt-8 text-center text-2xl md:text-3xl font-bold text-[#545454]">
+//                         What you’ll get
+//                     </h3>
+
+//                     {/* Grid of cards image */}
+//                     <div className="mt-6 mr-2 flex justify-center">
+//                         <Image
+//                             src="/images/aitest3page2Img.png"
+//                             alt="Career Info Cards"
+//                             width={670}
+//                             height={500}
+//                             className="object-contain"
+//                         />
+//                     </div>
+
+//                     {/* Are you ready section */}
+//                     <div className="mt-8 text-center">
+//                         <h2 className="text-3xl font-bold text-[#545454] mb-3">
+//                             Are you ready?
+//                         </h2>
+//                         <p className="text-[#666666] text-[19px] mb-3">
+//                             Let’s get started with your personalized experience.
+//                         </p>
+
+//                         <div className="flex justify-center items-center gap-3 mb-6">
+//                             <input
+//                                 type="checkbox"
+//                                 id="terms"
+//                                 className="w-6 h-6 accent-[#37D7D9] border-2 border-[#37D7D9] rounded-4xl cursor-pointer"
+//                             />
+//                             <label htmlFor="terms" className="text-[#666666] text-base">
+//                                 I accept the{" "}
+//                                 <a
+//                                     href="#"
+//                                     className="text-[#37D7D9] underline hover:opacity-80"
+//                                 >
+//                                     Terms & Conditions
+//                                 </a>
+//                             </label>
+//                         </div>
+
+//                         <Link href="/aiassistant/careerpathway?step=career-destination">
+//                             <button className="bg-[#37D7D9] text-white text-xl font-black rounded-full px-8 py-2 shadow-md hover:opacity-90 transition cursor-pointer">
+//                                 Get Started
+//                             </button>
+//                         </Link>
+//                     </div>
+//                 </div>
+//             </main>
+//         </>
+//     )
+// }
+
+// export default page
+
+
+"use client";
+
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { FiAlertCircle } from "react-icons/fi";
+import { FaRegClock } from "react-icons/fa";
+
+const DynamicTestPage = ({
+    title,
+    subtitle,
+    bannerImage,
+    quickInfoTitle,
+    quickInfoDuration,
+    quickInfoDescription,
+    whatYouGetImage,
+    startLink,
+}) => {
+    return (
+        <>
+            {/* HERO SECTION */}
+            <div className="flex items-center justify-center bg-[#DFFFFF] px-6 py-24">
+                <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+
+                    {/* LEFT TEXT */}
+                    <div className="md:w-1/2 text-center md:text-left pl-20 md:pl-28">
+                        <h1 className="text-4xl md:text-[40px] font-bold text-[#545454] mb-2">
+                            {title}
+                        </h1>
+
+                        <div
+                            className="w-70 h-[2px] mb-2 mx-auto md:mx-0 md:ml-[120px]"
+                            style={{
+                                background:
+                                    "linear-gradient(to right, #DFFFFF, #37D7D9, #37D7D9, #DFFFFF)",
+                            }}
+                        />
+
+                        <p className="text-[#666666] text-lg leading-normal">{subtitle}</p>
+                    </div>
+
+                    {/* RIGHT BANNER IMAGE */}
+                    <div className="md:w-1/2 mt-10 md:mt-0 flex justify-center">
+                        <Image
+                            src={bannerImage}
+                            width={460}
+                            height={470}
+                            className="object-contain"
+                            alt="Banner"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <main className="min-h-screen bg-white">
+                <div className="max-w-5xl mx-auto px-6 py-8">
+
+                    {/* QUICK INFORMATION */}
+                    <div className="mx-auto max-w-3xl">
+                        <div
+                            className="border rounded-4xl py-4 text-center shadow-sm"
+                            style={{
+                                borderColor: "#37D7D9",
+                                borderWidth: 1,
+                                boxShadow: "0 6px 18px rgba(0,0,0,0.04)",
+                            }}
+                        >
+                            <div className="flex items-center justify-center gap-3">
+                                <FiAlertCircle size={40} color="#37D7D9" />
+                                <h2 className="text-2xl md:text-3xl font-bold text-[#545454]">
+                                    {quickInfoTitle}
+                                </h2>
+                            </div>
+
+                            <div className="mt-4 inline-flex items-center gap-3 rounded-full border border-[#37D7D9] bg-[#DFFFFF] px-3 py-1">
+                                <FaRegClock className="text-[#66666666] w-5 h-5" />
+                                <span className="text-[#666666] text-sm">
+                                    {quickInfoDuration}
+                                </span>
+                            </div>
+
+                            <p className="mt-4 text-[#666666] text-xl">
+                                {quickInfoDescription}
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* WHAT YOU GET */}
+                    <h3 className="mt-8 text-center text-2xl md:text-3xl font-bold text-[#545454]">
+                        What you’ll get
+                    </h3>
+
+                    <div className="mt-6 flex justify-center">
+                        <Image
+                            src={whatYouGetImage}
+                            width={670}
+                            height={500}
+                            alt="Features"
+                            className="object-contain"
+                        />
+                    </div>
+
+                    {/* ARE YOU READY */}
+                    <div className="mt-8 text-center">
+                        <h2 className="text-3xl font-bold text-[#545454] mb-3">
+                            Are you ready?
+                        </h2>
+
+                        <p className="text-[#666666] text-[19px] mb-3">
+                            Let’s get started with your personalized experience.
+                        </p>
+
+                        <Link href={startLink}>
+                            <button className="bg-[#37D7D9] text-white text-xl font-black rounded-full px-8 py-2 shadow-md hover:opacity-90 transition cursor-pointer">
+                                Get Started
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+            </main>
+        </>
+    );
+};
+
+export default DynamicTestPage;
+

@@ -223,14 +223,14 @@ const AiMpage2: React.FC = () => {
 <Link
   href={
     tool.id === 1
-      ? "/aiassistant/careerpath"
+      ? "/aiassistant/careerpathway"
       : tool.id === 2
-      ? "/aiassistant/shortlisting"
+      ? "/aiassistant/universitycourse"
       : tool.id === 3
-      ? "/contactus/aiassistant/aitest"
+      ? "/aiassistant/visaquery"
       : tool.id === 4
-      ? "/aiassistant/chat"
-      : "/aiassistant/englishtest"
+      ? "/aiassistant/chatbot"
+      : "/aiassistant/englishproficiency"
   }
 >
   <button

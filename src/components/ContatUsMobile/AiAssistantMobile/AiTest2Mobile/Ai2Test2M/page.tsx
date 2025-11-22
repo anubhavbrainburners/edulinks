@@ -79,10 +79,15 @@ export default function Ai2Test2M () {
               </a>
             </label>
           </div>
-          <Link href="/contactus/aiassistant/aitest2/ai2q1">
-          <button className="bg-[#37D7D9] text-white text-md font-black rounded-full px-6 py-2 shadow-lg shadow-gray-300">
-            Get Started
-          </button>
+          <Link
+            href={{
+              pathname: "/aiassistant/visaquery",
+              query: { step: "preferred-destination" },
+            }}
+          >
+            <button className="bg-[#37D7D9] text-white text-md font-black rounded-full px-6 py-2 shadow-lg shadow-gray-300">
+              Get Started
+            </button>
           </Link>
         </div>
       </div>

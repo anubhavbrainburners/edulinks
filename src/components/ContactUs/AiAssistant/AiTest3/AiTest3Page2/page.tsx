@@ -80,10 +80,15 @@ export default function AiTest3Page2() {
             </label>
           </div>
 
-          <Link href="/contactus/aiassistant/aitest3/ai3q1">
-          <button className="bg-[#37D7D9] text-white text-xl font-black rounded-full px-8 py-2 shadow-md hover:opacity-90 transition cursor-pointer">
-            Get Started
-          </button>
+          <Link
+            href={{
+              pathname: "/aiassistant/careerpathway",
+              query: { step: "career-destination" },
+            }}
+          >
+            <button className="bg-[#37D7D9] text-white text-xl font-black rounded-full px-8 py-2 shadow-md hover:opacity-90 transition cursor-pointer">
+              Get Started
+            </button>
           </Link>
         </div>
       </div>

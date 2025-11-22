@@ -32,7 +32,7 @@ const tools: Tool[] = [
   },
   {
     id: 2,
-    title: "University/Course Shortlisting",
+    title: "University/Course Shortlisting",  
     description:
       "Find universities and courses that align with your career goals.",
     image: "/images/aipage2Img2.png",
@@ -221,14 +221,14 @@ const AiPage2: React.FC = () => {
 <Link
   href={
     tool.id === 1
-      ? "/contactus/aiassistant/aitest3"
+      ? "/aiassistant/careerpathway"
       : tool.id === 2
-      ? "/contactus/aiassistant/aitest"
+      ? "/aiassistant/universitycourse"
       : tool.id === 3
-      ? "/contactus/aiassistant/aitest2"
+      ? "/aiassistant/visaquery"
       : tool.id === 4
-      ? "/contactus/aiassistant/aitest5"
-      : "/contactus/aiassistant/aitest4"
+      ? "/aiassistant/chatbot"
+      : "/aiassistant/englishproficiency"
   }
 >
   <button

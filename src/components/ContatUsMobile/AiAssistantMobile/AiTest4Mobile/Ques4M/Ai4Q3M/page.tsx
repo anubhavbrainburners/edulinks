@@ -23,7 +23,7 @@ export default function Ai4Q3M() {
 
   function handleNext() {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest4"); // replace with your actual route
+      router.push("/aiassistant/englishproficiency"); // replace with your actual route
     }
   }
 

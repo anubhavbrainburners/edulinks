@@ -28,7 +28,7 @@ export default function AiQ4() {
 
   // ✅ Add router.push() for next page navigation
   const handleNext = () => {
-    router.push("/contactus/aiassistant/aitest"); // 👈 change this route to your actual next page
+    router.push("/aiassistant/universitycourse"); // 👈 change this route to your actual next page
   };
 
   return (

@@ -34,7 +34,7 @@ export default function Ai3Q2M() {
 
   function handleNext() {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest3/ai3q1/ai3q2/ai3q3"); // replace with your actual route
+      router.push("/aiassistant/careerpathway?step=career-interests"); // replace with your actual route
     }
   }
 

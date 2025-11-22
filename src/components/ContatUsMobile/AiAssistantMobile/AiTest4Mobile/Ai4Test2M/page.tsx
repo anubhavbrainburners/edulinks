@@ -80,7 +80,12 @@ export default function Ai4Test2M () {
             </label>
           </div>
 
-          <Link href="/contactus/aiassistant/aitest3/ai3q1">
+          <Link
+            href={{
+              pathname: "/aiassistant/englishproficiency",
+              query: { step: "test-selection" },
+            }}
+          >
           <button className="bg-[#37D7D9] text-white text-md font-black rounded-full px-6 py-2 shadow-lg shadow-gray-300">
             Get Started
           </button>

@@ -20,7 +20,7 @@
 
 //   const handleNext = () => {
 //     // ✅ Navigate to next page
-//     router.push("/contactus/aiassistant/aitest4/ai4q1/ai4q2"); // <-- change this to your actual next route
+//     router.push("/aiassistant/englishproficiency?step=skill-focus"); // <-- change this to your actual next route
 //   };
 
 //   return (
@@ -172,7 +172,7 @@ export default function Ai4Q1() {
   const handleNext = () => {
     if (selected === null) return; // prevents navigation
     localStorage.setItem("selectedTest", options[selected]);
-    router.push("/contactus/aiassistant/aitest4/ai4q1/ai4q2");
+    router.push("/aiassistant/englishproficiency?step=skill-focus");
     // router.push("/testlink")
   };
 

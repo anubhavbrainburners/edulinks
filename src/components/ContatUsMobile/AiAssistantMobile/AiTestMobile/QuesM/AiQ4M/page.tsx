@@ -30,7 +30,7 @@ export default function AiQ4M() {
 
   function handleNext() {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest"); // <-- replace with your next route (e.g. "/CountrySelMobile2")
+      router.push("/aiassistant/universitycourse"); // <-- replace with your next route (e.g. "/CountrySelMobile2")
     }
   }
 

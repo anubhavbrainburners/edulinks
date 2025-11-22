@@ -28,7 +28,7 @@ export default function AiQ2() {
   // ✅ handle next button navigation
   const handleNext = () => {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest/aiq1/aiq2/aiq3"); // 👈 change this to your next page
+      router.push("/aiassistant/universitycourse?step=interest-areas"); // 👈 change this to your next page
     } else {
       alert("Please select your education background before continuing!");
     }

@@ -49,7 +49,7 @@ export default function Ai3Q3() {
 
   const handleNext = (e: React.MouseEvent) => {
     e.preventDefault();
-    router.push("/contactus/aiassistant/aitest3/ai3q1/ai3q2/ai3q3/ai3q4"); // 👈 Change this route to your next question page
+    router.push("/aiassistant/careerpathway?step=career-work-style"); // 👈 Change this route to your next question page
   };
 
   return (
@@ -175,3 +175,4 @@ export default function Ai3Q3() {
     </main>
   );
 }
+

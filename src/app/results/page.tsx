@@ -1,4 +1,4 @@
-// app/contactus/aiassistant/aitest4/results/page.tsx
+// app/aiassistant/englishproficiency/results/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -30,7 +30,7 @@ export default function TestResults() {
     if (storedResults) {
       setResults(JSON.parse(storedResults));
     } else {
-      router.push("/contactus/aiassistant/aitest4");
+      router.push("/aiassistant/englishproficiency");
     }
   }, [router]);
 
@@ -177,7 +177,7 @@ export default function TestResults() {
         {/* Action Buttons */}
         <div className="flex justify-center space-x-4 mt-8">
           <button
-            onClick={() => router.push("/contactus/aiassistant/aitest4")}
+            onClick={() => router.push("/aiassistant/englishproficiency")}
             className="px-6 py-3 bg-[#37D7D9] text-white rounded-full hover:opacity-90 transition"
           >
             Take Another Test

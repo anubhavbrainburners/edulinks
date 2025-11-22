@@ -1,4 +1,4 @@
-// app/contactus/aiassistant/aitest4/questions/page.tsx
+// app/aiassistant/englishproficiency/questions/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -176,7 +176,7 @@ export default function EnglishTestQuestions() {
             {error || "No questions available."}
           </p>
           <button
-            onClick={() => router.push("/contactus/aiassistant/aitest4")}
+            onClick={() => router.push("/aiassistant/englishproficiency")}
             className="mt-4 px-4 py-2 bg-[#37D7D9] text-white rounded-full hover:opacity-90 transition"
           >
             Go Back

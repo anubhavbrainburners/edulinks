@@ -24,7 +24,7 @@ export default function Ai4Q2M() {
 
   function handleNext() {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest4/ai4q1/ai4q2/ai4q3"); // replace with your actual route
+      router.push("/aiassistant/englishproficiency?step=confidence-level"); // replace with your actual route
     }
   }
 

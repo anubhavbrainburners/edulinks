@@ -6,6 +6,7 @@ import Header from "@/components/header/page";
 import Footer from "@/components/footer/page";
 import { usePathname } from "next/navigation";
 import Mheader from "@/components/HomePageMobile/Mheader/page";
+import { AuthProvider } from "@/components/AuthContext";
 
 // Fonts
 const dmSans = DM_Sans({
@@ -34,17 +35,19 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        {/* 👇 Show mobile header on small screens, desktop header on larger screens */}
-        <div className="block md:hidden">
-          <Mheader />
-        </div>
-        <div className="hidden md:block">
-          <Header />
-        </div>
+        <AuthProvider>
+          {/* 👇 Show mobile header on small screens, desktop header on larger screens */}
+          <div className="block md:hidden">
+            <Mheader />
+          </div>
+          <div className="hidden md:block">
+            <Header />
+          </div>
 
-        <main>{children}</main>
+          <main>{children}</main>
 
-        {/* {!shouldHideFooter && <Footer />} */}
+          {/* {!shouldHideFooter && <Footer />} */}
+        </AuthProvider>
       </body>
     </html>
   );

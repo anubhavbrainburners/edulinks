@@ -49,7 +49,7 @@ export default function Ai3Q3M() {
 
    function handleNext() {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest3/ai3q1/ai3q2/ai3q3/ai3q4"); // replace with your actual route
+      router.push("/aiassistant/careerpathway?step=career-work-style"); // replace with your actual route
     }
   }
 

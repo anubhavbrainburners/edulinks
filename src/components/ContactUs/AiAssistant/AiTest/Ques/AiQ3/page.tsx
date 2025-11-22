@@ -43,7 +43,7 @@ export default function AiQ3() {
   };
 
   const handleNext = () => {
-    router.push("/contactus/aiassistant/aitest/aiq1/aiq2/aiq3/aiq4"); // 👈 Change this route to where you want it to go
+    router.push("/aiassistant/universitycourse?step=work-style"); // 👈 Change this route to where you want it to go
   };
 
   return (

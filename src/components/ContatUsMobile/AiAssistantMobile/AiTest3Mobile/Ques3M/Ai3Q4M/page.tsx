@@ -30,7 +30,7 @@ export default function Ai3Q4M() {
 
   function handleNext() {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest3"); // replace with your actual route
+      router.push("/aiassistant/careerpathway"); // replace with your actual route
     }
   }
 

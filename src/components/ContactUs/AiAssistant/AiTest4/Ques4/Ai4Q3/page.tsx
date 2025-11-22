@@ -19,7 +19,7 @@
 //   };
 
 //   const handleNext = () => {
-//     router.push("/contactus/aiassistant/aitest4"); // 👈 change this path to your next page
+//     router.push("/aiassistant/englishproficiency"); // 👈 change this path to your next page
 //   };
 
 //   return (
@@ -254,7 +254,7 @@ export default function Ai4Q3() {
       );
 
       // Navigate
-      router.push("/contactus/aiassistant/aitest4");
+      router.push("/aiassistant/englishproficiency");
     } catch (error) {
       console.error("Error generating questions:", error);
       alert("Error generating test questions.");

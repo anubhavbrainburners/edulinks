@@ -22,7 +22,7 @@ export default function Ai4Q2() {
     // ✅ Navigate to the next step
     if (selected === null) return
     localStorage.setItem("selectedSection", options[selected]);
-    router.push("/contactus/aiassistant/aitest4/ai4q1/ai4q2/ai4q3"); 
+    router.push("/aiassistant/englishproficiency?step=confidence-level"); 
   };
 
   return (

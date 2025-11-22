@@ -28,7 +28,7 @@ export default function Ai2Q1() {
 
   const handleNext = () => {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest2/ai2q1/ai2q2"); // 👈 change route here if needed
+      router.push("/aiassistant/visaquery?step=application-status"); // 👈 change route here if needed
     } else {
       alert("Please select a country before proceeding!");
     }

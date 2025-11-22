@@ -81,7 +81,12 @@ export default function AiTest2() {
           </div>
 
           {/* ✅ Get Started button with link */}
-          <Link href="/contactus/aiassistant/aitest/aiq1">
+          <Link
+            href={{
+              pathname: "/aiassistant/universitycourse",
+              query: { step: "study-destination" },
+            }}
+          >
             <button className="bg-[#37D7D9] text-white text-xl font-black rounded-full px-8 py-2 shadow-md hover:opacity-90 transition cursor-pointer">
               Get Started
             </button>

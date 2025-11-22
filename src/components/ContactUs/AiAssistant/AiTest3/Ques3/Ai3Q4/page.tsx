@@ -28,7 +28,7 @@ export default function Ai3Q4() {
 
   const handleNext = () => {
     // ✅ navigate to next question page
-    router.push("/contactus/aiassistant/aitest3"); // <-- change to your next route
+    router.push("/aiassistant/careerpathway"); // <-- change to your next route
   };
 
   return (

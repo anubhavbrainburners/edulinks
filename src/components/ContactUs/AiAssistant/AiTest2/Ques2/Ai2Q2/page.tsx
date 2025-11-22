@@ -25,7 +25,7 @@ export default function Ai2Q2() {
 
   const handleNext = () => {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest2"); // 👈 navigate to the next question page
+      router.push("/aiassistant/visaquery"); // 👈 navigate to the next question page
     } else {
       alert("Please select an option before proceeding!");
     }

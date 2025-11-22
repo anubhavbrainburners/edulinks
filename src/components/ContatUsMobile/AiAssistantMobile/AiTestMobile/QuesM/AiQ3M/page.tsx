@@ -53,7 +53,7 @@ export default function AiQ3M() {
 
   function handleNext() {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest/aiq1/aiq2/aiq3/aiq4"); // <-- replace with your next route (e.g. "/CountrySelMobile2")
+      router.push("/aiassistant/universitycourse?step=work-style"); // <-- replace with your next route (e.g. "/CountrySelMobile2")
     }
   }
 

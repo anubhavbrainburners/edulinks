@@ -24,7 +24,7 @@ export default function Ai4Q1M() {
 
   function handleNext() {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest4/ai4q1/ai4q2"); // replace with your actual route
+      router.push("/aiassistant/englishproficiency?step=skill-focus"); // replace with your actual route
     }
   }
 

@@ -29,7 +29,7 @@ export default function AiQ1() {
   // ✅ handle Next navigation
   const handleNext = () => {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest/aiq1/aiq2"); // 👈 replace with your actual next page route
+      router.push("/aiassistant/universitycourse?step=education-background"); // 👈 replace with your actual next page route
     } else {
       alert("Please select a country before continuing!");
     }

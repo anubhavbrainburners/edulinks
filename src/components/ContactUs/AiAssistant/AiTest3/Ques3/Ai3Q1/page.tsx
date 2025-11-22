@@ -28,7 +28,7 @@ export default function Ai3Q1() {
 
   const handleNext = () => {
     if (selected !== null) {
-      router.push("/contactus/aiassistant/aitest3/ai3q1/ai3q2"); // 👈 Navigate to the next question page
+      router.push("/aiassistant/careerpathway?step=career-education"); // 👈 Navigate to the next question page
     } else {
       alert("Please select a country before proceeding!");
     }
