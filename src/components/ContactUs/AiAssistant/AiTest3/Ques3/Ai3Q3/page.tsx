@@ -1,16 +1,19 @@
-// app/page.tsx
+// app/aiassistant/careerpathway/Ai3Q3.tsx
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { buildCareerParams, parseCareerParams } from "@/utils/encryption";
 
 export default function Ai3Q3() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [progress, setProgress] = useState(50);
   const [selected, setSelected] = useState<number[]>([]);
+  const [careerData, setCareerData] = useState<any>(null);
 
   const options = [
     "Mathematics & Analytics",
@@ -24,6 +27,13 @@ export default function Ai3Q3() {
     "Education & Teaching",
     "Communication & Media",
   ];
+
+  useEffect(() => {
+    const existingData = parseCareerParams(searchParams);
+    if (existingData) {
+      setCareerData(existingData);
+    }
+  }, [searchParams]);
 
   const handleSelect = (idx: number) => {
     setSelected((prev) => {
@@ -49,7 +59,19 @@ export default function Ai3Q3() {
 
   const handleNext = (e: React.MouseEvent) => {
     e.preventDefault();
-    router.push("/aiassistant/careerpathway?step=career-work-style"); // 👈 Change this route to your next question page
+    if (selected.length > 0) {
+      const selectedInterests = selected.map(idx => options[idx]);
+      const updatedData = {
+        ...careerData,
+        interests: selectedInterests,
+        step: "career-work-style"
+      };
+      
+      const params = buildCareerParams(updatedData);
+      router.push(`/aiassistant/careerpathway?step=career-work-style&${params}`);
+    } else {
+      alert("Please select at least one interest area before proceeding!");
+    }
   };
 
   return (
@@ -60,7 +82,6 @@ export default function Ai3Q3() {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Left fixed panel */}
       <aside
         className="hidden md:flex flex-col ml-30"
         style={{
@@ -85,7 +106,7 @@ export default function Ai3Q3() {
 
         <div className="mt-16 max-w-[550px]">
           <h1 className="text-4xl font-bold mb-6 text-[#545454]">
-            Career Assessment For Country_Name
+            Career Assessment {careerData?.country ? `For ${careerData.country}` : ''}
           </h1>
           <p className="text-base leading-tight font-medium text-[#545454]">
             Help Us Understand Your Background To Create A Personalized <br />
@@ -104,7 +125,7 @@ export default function Ai3Q3() {
             </div>
             <div className="flex items-center justify-between text-xs mt-2 font-medium">
               <span>
-                “You’re Doing Great — Let’s Complete Your Career Match!”
+                "You're Doing Great — Let's Complete Your Career Match!"
                 <br /> Or Simply
               </span>
               <span className="-mt-4">{progress}%</span>
@@ -113,7 +134,6 @@ export default function Ai3Q3() {
         </div>
       </aside>
 
-      {/* Right scrollable form */}
       <section
         className="pt-6 pb-12 mr-8"
         style={{
@@ -131,6 +151,9 @@ export default function Ai3Q3() {
                 Which Areas Or Subjects Interest You The Most?
                 <br /> (Select up to 3)
               </p>
+              <div className="mb-4 inline-block bg-[#E6FDFD] text-[#37D7D9] px-3 py-1 rounded-full text-sm font-semibold">
+                {selected.length}/3 selected
+              </div>
             </div>
 
             <form className="space-y-4" aria-label="Interest areas">
@@ -175,4 +198,3 @@ export default function Ai3Q3() {
     </main>
   );
 }
-

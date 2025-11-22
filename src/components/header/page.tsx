@@ -275,7 +275,7 @@ function Header() {
         {!isAuthenticated && (
           <>
             <button
-              onClick={() => router.push('/edulink-aiassistant')}
+              onClick={() => router.push('/aiassistant')}
               className="border border-[#37D7D9] text-[#37D7D9] text-md px-3 py-2 rounded-full hover:bg-teal-50 hover:shadow-md hover:shadow-gray-400 transition-shadow duration-300 ease-in-out"
             >
               Edulinks AI Assistant

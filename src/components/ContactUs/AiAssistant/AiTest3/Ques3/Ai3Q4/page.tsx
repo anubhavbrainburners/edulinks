@@ -1,15 +1,20 @@
-// app/page.tsx
+// app/aiassistant/careerpathway/Ai3Q4.tsx
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
-import { useRouter } from "next/navigation"; // ✅ import router
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { buildCareerParams, parseCareerParams } from "@/utils/encryption";
 
 export default function Ai3Q4() {
-  const router = useRouter(); // ✅ initialize router
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [progress, setProgress] = useState(75);
+  const [selected, setSelected] = useState<number | null>(null);
+  const [careerData, setCareerData] = useState<any>(null);
+
   const options = [
     "Structured & Analytical",
     "Creative & Free-Flowing",
@@ -19,7 +24,12 @@ export default function Ai3Q4() {
     "Tech-Focused & Digital",
   ];
 
-  const [selected, setSelected] = useState<number | null>(null);
+  useEffect(() => {
+    const existingData = parseCareerParams(searchParams);
+    if (existingData) {
+      setCareerData(existingData);
+    }
+  }, [searchParams]);
 
   const handleSelect = (idx: number) => {
     setSelected((prev) => (prev === idx ? null : idx));
@@ -27,8 +37,19 @@ export default function Ai3Q4() {
   };
 
   const handleNext = () => {
-    // ✅ navigate to next question page
-    router.push("/aiassistant/careerpathway"); // <-- change to your next route
+    if (selected !== null) {
+      const selectedWorkStyle = options[selected];
+      const updatedData = {
+        ...careerData,
+        workStyle: selectedWorkStyle,
+        step: "questions"
+      };
+      
+      const params = buildCareerParams(updatedData);
+      router.push(`/aiassistant/careerpathway/questions?${params}`);
+    } else {
+      alert("Please select a work style before proceeding!");
+    }
   };
 
   return (
@@ -39,7 +60,6 @@ export default function Ai3Q4() {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Left fixed panel */}
       <aside
         className="hidden md:flex flex-col ml-30"
         style={{
@@ -64,7 +84,7 @@ export default function Ai3Q4() {
 
         <div className="mt-16 max-w-[550px]">
           <h1 className="text-4xl font-bold mb-6 text-[#545454]">
-            Career Assessment For Country_Name
+            Career Assessment {careerData?.country ? `For ${careerData.country}` : ''}
           </h1>
           <p className="text-base leading-tight font-medium text-[#545454]">
             Help Us Understand Your Background To Create A Personalized <br />
@@ -83,7 +103,7 @@ export default function Ai3Q4() {
             </div>
             <div className="flex items-center justify-between text-xs mt-2 font-medium">
               <span>
-                “You’re Doing Great — Let’s Complete Your Career Match!” <br /> Or
+                "You're Doing Great — Let's Complete Your Career Match!" <br /> Or
                 Simply
               </span>
               <span className="-mt-4">{progress}%</span>
@@ -92,7 +112,6 @@ export default function Ai3Q4() {
         </div>
       </aside>
 
-      {/* Right scrollable form */}
       <section
         className="pt-6 pb-12 mr-8"
         style={{
@@ -138,14 +157,13 @@ export default function Ai3Q4() {
                 );
               })}
 
-              {/* ✅ Next button with router.push */}
               <div className="flex justify-end mt-8">
                 <button
                   type="button"
                   onClick={handleNext}
                   className="flex items-center gap-3 bg-[#37D7D9] text-white text-xl font-black rounded-full px-6 py-2 shadow-md hover:cursor-pointer"
                 >
-                  Next <FaArrowRightLong />
+                  Start Assessment <FaArrowRightLong />
                 </button>
               </div>
             </form>

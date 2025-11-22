@@ -58,6 +58,8 @@ export default function VerifyMail() {
                 `https://edulink.primedepthlabs.com/v1/auth/verify-otp?otp=${otpValue}&email=${email}`
             );
 
+            console.log("VERIFY OTP RESPONSE:", response.data);
+
             if (response?.data?.success) {
 
                 // Save token + complete userData

@@ -1,3 +1,4 @@
+// app/aiassistant/careerpathway/Ai3Q1.tsx
 "use client";
 
 import Image from "next/image";
@@ -5,6 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { buildCareerParams } from "@/utils/encryption";
 
 export default function Ai3Q1() {
   const router = useRouter();
@@ -13,7 +15,7 @@ export default function Ai3Q1() {
 
   const options = [
     "Germany",
-    "Canada",
+    "Canada", 
     "UK",
     "USA",
     "Australia",
@@ -28,7 +30,14 @@ export default function Ai3Q1() {
 
   const handleNext = () => {
     if (selected !== null) {
-      router.push("/aiassistant/careerpathway?step=career-education"); // 👈 Navigate to the next question page
+      const selectedCountry = options[selected];
+      const careerData = {
+        country: selectedCountry,
+        step: "career-education"
+      };
+      
+      const params = buildCareerParams(careerData);
+      router.push(`/aiassistant/careerpathway?step=career-education&${params}`);
     } else {
       alert("Please select a country before proceeding!");
     }
@@ -87,7 +96,7 @@ export default function Ai3Q1() {
             </div>
             <div className="flex items-center justify-between text-xs mt-2 font-medium">
               <span>
-                “You’re Doing Great — Let’s Complete Your Career Match!”
+                "You're Doing Great — Let's Complete Your Career Match!"
                 <br /> Or Simply
               </span>
               <span className="-mt-4">{progress}%</span>
@@ -131,7 +140,6 @@ export default function Ai3Q1() {
                       {opt}
                     </div>
 
-                    {/* Fixed-size container so layout never shifts */}
                     <div className="flex-shrink-0 flex items-center justify-center h-9 w-9">
                       {isChecked ? (
                         <IoCheckmarkCircle

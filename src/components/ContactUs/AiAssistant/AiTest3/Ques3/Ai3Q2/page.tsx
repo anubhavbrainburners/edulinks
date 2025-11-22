@@ -1,25 +1,35 @@
-// app/page.tsx
+// app/aiassistant/careerpathway/Ai3Q2.tsx
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { buildCareerParams, parseCareerParams } from "@/utils/encryption";
 
 export default function Ai3Q2() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [progress, setProgress] = useState(25);
   const [selected, setSelected] = useState<number | null>(null);
+  const [careerData, setCareerData] = useState<any>(null);
 
   const options = [
     "High School (12th Grade)",
     "Undergraduate Student",
-    "Bachelor’s Degree",
-    "Master’s Degree",
+    "Bachelor's Degree",
+    "Master's Degree",
     "PhD / Doctorate",
     "Professional Experience",
   ];
+
+  useEffect(() => {
+    const existingData = parseCareerParams(searchParams);
+    if (existingData) {
+      setCareerData(existingData);
+    }
+  }, [searchParams]);
 
   const handleSelect = (idx: number) => {
     setSelected((prev) => (prev === idx ? null : idx));
@@ -28,7 +38,19 @@ export default function Ai3Q2() {
 
   const handleNext = (e: React.MouseEvent) => {
     e.preventDefault();
-    router.push("/aiassistant/careerpathway?step=career-interests"); // 👈 Change this path to your next question page
+    if (selected !== null) {
+      const selectedEducation = options[selected];
+      const updatedData = {
+        ...careerData,
+        education: selectedEducation,
+        step: "career-interests"
+      };
+      
+      const params = buildCareerParams(updatedData);
+      router.push(`/aiassistant/careerpathway?step=career-interests&${params}`);
+    } else {
+      alert("Please select an education level before proceeding!");
+    }
   };
 
   return (
@@ -39,7 +61,6 @@ export default function Ai3Q2() {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Left fixed panel */}
       <aside
         className="hidden md:flex flex-col ml-30"
         style={{
@@ -64,7 +85,7 @@ export default function Ai3Q2() {
 
         <div className="mt-16 max-w-[550px]">
           <h1 className="text-4xl font-bold mb-6 text-[#545454]">
-            Career Assessment For Country_Name
+            Career Assessment {careerData?.country ? `For ${careerData.country}` : ''}
           </h1>
           <p className="text-base leading-tight font-medium text-[#545454]">
             Help Us Understand Your Background To Create A Personalized <br />
@@ -83,7 +104,7 @@ export default function Ai3Q2() {
             </div>
             <div className="flex items-center justify-between text-xs mt-2 font-medium">
               <span>
-                “You’re Doing Great — Let’s Complete Your Career Match!”
+                "You're Doing Great — Let's Complete Your Career Match!"
                 <br /> Or Simply
               </span>
               <span className="-mt-4">{progress}%</span>
@@ -92,7 +113,6 @@ export default function Ai3Q2() {
         </div>
       </aside>
 
-      {/* Right scrollable form */}
       <section
         className="pt-6 pb-12 mr-8"
         style={{
@@ -156,4 +176,3 @@ export default function Ai3Q2() {
     </main>
   );
 }
-
