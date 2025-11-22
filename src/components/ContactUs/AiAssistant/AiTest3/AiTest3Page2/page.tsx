@@ -92,6 +92,6 @@ export default function AiTest3Page2() {
           </Link>
         </div>
       </div>
-    </main>
-  );
+    </main>
+  );
 }

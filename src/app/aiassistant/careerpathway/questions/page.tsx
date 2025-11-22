@@ -1,9 +1,11 @@
-// app/aiassistant/englishproficiency/questions/page.tsx
+// app/aiassistant/careerpathway/questions/page.tsx
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { parseCareerParams } from "@/utils/encryption";
 
 interface Question {
   id: number;
@@ -14,10 +16,9 @@ interface Question {
     C: string;
     D: string;
   };
-  correctAnswer?: string; // For compatibility
 }
 
-export default function EnglishTestQuestions() {
+export default function CareerQuestions() {
   const router = useRouter();
   const searchParams = useSearchParams();
   
@@ -28,6 +29,7 @@ export default function EnglishTestQuestions() {
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [careerData, setCareerData] = useState<any>(null);
 
   const questionsScrollRef = useRef<HTMLDivElement>(null);
 
@@ -46,7 +48,19 @@ export default function EnglishTestQuestions() {
     "Finalizing your career assessment...",
   ];
 
-  // Scroll functions from old component
+  // Get career data from URL parameters
+  useEffect(() => {
+    const data = parseCareerParams(searchParams);
+    if (data) {
+      setCareerData(data);
+      fetchQuestions(data);
+    } else {
+      setError("Missing career profile data");
+      setIsLoading(false);
+    }
+  }, [searchParams]);
+
+  // Scroll functions
   const scrollToTop = useCallback(() => {
     if (questionsScrollRef.current) {
       questionsScrollRef.current.scrollTo({
@@ -87,26 +101,9 @@ export default function EnglishTestQuestions() {
     }, 300);
   }, []);
 
-  // Get parameters from localStorage (from previous steps)
-  useEffect(() => {
-    const selectedTest = localStorage.getItem("selectedTest");
-    const selectedSection = localStorage.getItem("selectedSection");
-    const selectedDifficulty = localStorage.getItem("selectedDifficulty");
-
-    // Sanity check for required params
-    if (!selectedTest || !selectedSection || !selectedDifficulty) {
-      setError("Missing required test parameters");
-      setIsLoading(false);
-      return;
-    }
-
-    fetchQuestions();
-  }, []);
-
   // Enhanced loading effect
   useEffect(() => {
     if (isLoading) {
-      // Timer countdown
       const timer = setInterval(() => {
         setTimeRemaining((prev) => {
           if (prev <= 1) {
@@ -117,7 +114,6 @@ export default function EnglishTestQuestions() {
         });
       }, 1000);
 
-      // Stage progression every 6 seconds
       const stageTimer = setInterval(() => {
         setLoadingStage((prev) => {
           const nextStage = (prev + 1) % loadingMessages.length;
@@ -140,63 +136,42 @@ export default function EnglishTestQuestions() {
     }
   }, [currentQuestionIndex, questions.length, forceScrollToTop]);
 
-  const fetchQuestions = async () => {
+  const fetchQuestions = async (profileData: any) => {
     setIsLoading(true);
     setError(null);
     
     try {
-      // Try to get questions from localStorage first (from the quiz flow)
-      const storedQuestions = localStorage.getItem("generatedQuestions");
-      
-      if (storedQuestions) {
-        const parsedQuestions = JSON.parse(storedQuestions);
-        if (Array.isArray(parsedQuestions) && parsedQuestions.length > 0) {
-          setQuestions(parsedQuestions);
-          setIsLoading(false);
-          return;
-        }
-      }
-
-      // Fallback: Generate new questions via API
-      const selectedTest = localStorage.getItem("selectedTest");
-      const selectedSection = localStorage.getItem("selectedSection");
-      const selectedDifficulty = localStorage.getItem("selectedDifficulty");
-
-      const response = await axios.post("/api/generate-questions", {
-        testType: selectedTest,
-        section: selectedSection,
-        difficulty: selectedDifficulty,
-        count: 10,
+      const response = await fetch("/api/generate-career-questions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ profileData }),
       });
 
-      let questionsArray: Question[] = [];
-
-      // Normalize response shapes (same logic as before)
-      if (
-        response.data?.success &&
-        response.data?.data &&
-        Array.isArray(response.data.data.questions)
-      ) {
-        questionsArray = response.data.data.questions;
-      } else if (response.data?.success && Array.isArray(response.data.questions)) {
-        questionsArray = response.data.questions;
-      } else if (
-        response.data?.success &&
-        response.data.testSession &&
-        Array.isArray(response.data.testSession.questions)
-      ) {
-        questionsArray = response.data.testSession.questions;
-      } else if (Array.isArray(response.data)) {
-        questionsArray = response.data;
+      if (!response.ok) {
+        throw new Error(`API failed with status ${response.status}`);
       }
 
-      if (!Array.isArray(questionsArray) || questionsArray.length === 0) {
-        throw new Error("No questions returned from server");
+      const data = await response.json();
+      
+      if (!data.questions || !Array.isArray(data.questions)) {
+        throw new Error("Invalid response format from API");
       }
+
+      // Transform the response to match expected format
+      const questionsArray: Question[] = data.questions.map((item: any, index: number) => ({
+        id: index + 1,
+        question: item.question,
+        options: {
+          A: item.options[0],
+          B: item.options[1],
+          C: item.options[2],
+          D: item.options[3],
+        },
+      }));
 
       setQuestions(questionsArray);
-      // Store in localStorage for persistence
-      localStorage.setItem("generatedQuestions", JSON.stringify(questionsArray));
       
     } catch (err: any) {
       console.error("Error loading questions:", err);
@@ -217,7 +192,6 @@ export default function EnglishTestQuestions() {
     setSelectedAnswer(value);
     setUserAnswers((prev) => ({ ...prev, [currentQuestionIndex]: value }));
 
-    // Scroll to show next button better (from old component)
     setTimeout(() => {
       if (questionsScrollRef.current) {
         const container = questionsScrollRef.current;
@@ -238,7 +212,6 @@ export default function EnglishTestQuestions() {
   // Enhanced navigation with transitions
   const goToNext = () => {
     if (!selectedAnswer) {
-      // Show error toast (you can implement toast or error state)
       setError("Please select an answer before proceeding.");
       setTimeout(() => setError(null), 3000);
       return;
@@ -251,7 +224,6 @@ export default function EnglishTestQuestions() {
       return;
     }
 
-    // Move to next question with transition
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentQuestionIndex(prev => prev + 1);
@@ -278,37 +250,25 @@ export default function EnglishTestQuestions() {
   };
 
   const handleSubmit = () => {
-    let correct = 0;
+    const finalAnswers = questions.map((q, index) => {
+      const selectedLetter = userAnswers[index];
+      const fullAnswerText = selectedLetter ? q.options[selectedLetter as keyof typeof q.options] : "";
 
-    questions.forEach((q, index) => {
-      const userAns = userAnswers[index];
-      if (!userAns) return;
-
-      if (
-        q.correctAnswer &&
-        normalize(userAns) === normalize(q.correctAnswer)
-      ) {
-        correct++;
-      }
+      return {
+        question: q.question,
+        selectedOption: fullAnswerText,
+      };
     });
 
-    const score =
-      questions.length > 0 ? Math.round((correct / questions.length) * 100) : 0;
+    // Store results and navigate
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('careerAssessmentResults', JSON.stringify({
+        userProfile: careerData,
+        testResults: finalAnswers,
+      }));
+    }
 
-    // Store results in localStorage for the results page
-    localStorage.setItem("testResults", JSON.stringify({
-      score,
-      totalQuestions: questions.length,
-      correctAnswers: correct,
-      userAnswers,
-      questions,
-      selectedTest: localStorage.getItem("selectedTest"),
-      selectedSection: localStorage.getItem("selectedSection"),
-      selectedDifficulty: localStorage.getItem("selectedDifficulty"),
-    }));
-
-    // Navigate to results page
-    router.push("/results");
+    router.push('/aiassistant/careerpathway/result');
   };
 
   // Enhanced Loading Component
@@ -390,7 +350,6 @@ export default function EnglishTestQuestions() {
     );
   }
 
-  // Don't show error UI while loading
   if (error || (!isLoading && questions.length === 0)) {
     return (
       <div className="bg-[#DFFFFF] flex items-center justify-center min-h-screen">
@@ -400,7 +359,7 @@ export default function EnglishTestQuestions() {
             {error || "No questions available."}
           </p>
           <button
-            onClick={() => router.push("/aiassistant/englishproficiency")}
+            onClick={() => router.push("/aiassistant/careerpathway")}
             className="mt-4 px-4 py-2 bg-[#37D7D9] text-white rounded-full hover:opacity-90 transition"
           >
             Go Back
@@ -413,19 +372,8 @@ export default function EnglishTestQuestions() {
   const currentQuestion = questions[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
-  // Build options entries - handle both old and new question formats
-  let optionsEntries: [string, string][] = [];
-  
-  if (currentQuestion.options && typeof currentQuestion.options === 'object') {
-    // Handle old format: { A: "option1", B: "option2", ... }
-    optionsEntries = Object.entries(currentQuestion.options).map(([key, value]) => [key, value as string]);
-  } else if (Array.isArray(currentQuestion.options)) {
-    // Handle new format: ["option1", "option2", ...]
-    optionsEntries = currentQuestion.options.map((opt, idx) => [
-      String.fromCharCode(65 + idx), // A, B, C, D
-      opt,
-    ]);
-  }
+  // Build options entries
+  const optionsEntries = Object.entries(currentQuestion.options);
 
   return (
     <main
@@ -482,13 +430,6 @@ export default function EnglishTestQuestions() {
                 <h2 className="text-xl font-semibold text-[#1A4D4F] leading-relaxed">
                   {currentQuestion.question}
                 </h2>
-                
-                {currentQuestion.passage && (
-                  <div className="mt-4 p-4 border border-gray-200 rounded-lg bg-gray-50">
-                    <h3 className="font-medium text-gray-700 mb-2">Reading Passage:</h3>
-                    <p className="text-gray-600 leading-relaxed">{currentQuestion.passage}</p>
-                  </div>
-                )}
               </div>
 
               {/* Options */}
@@ -501,7 +442,7 @@ export default function EnglishTestQuestions() {
                   return (
                     <button
                       key={key}
-                      onClick={() => handleAnswerSelect(value)}
+                      onClick={() => handleAnswerSelect(key)}
                       className={`w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${
                         isSelected
                           ? "bg-[#E6FDFD] border-[#37D7D9] shadow-sm"
@@ -616,6 +557,11 @@ export default function EnglishTestQuestions() {
           </div>
         </div>
       </div>
+
+      <ToastContainer
+        toastClassName="!bg-white !text-[#1A4D4F] !rounded-xl !border !border-[#E6FDFD]"
+        progressClassName="!bg-[#37D7D9]"
+      />
     </main>
   );
 }

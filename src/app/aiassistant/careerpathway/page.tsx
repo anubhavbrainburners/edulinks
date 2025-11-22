@@ -1,3 +1,4 @@
+'use client';
 import type { ReactNode } from "react";
 
 import AiTest3Page1 from "@/components/ContactUs/AiAssistant/AiTest3/AiTest3Page1/page";

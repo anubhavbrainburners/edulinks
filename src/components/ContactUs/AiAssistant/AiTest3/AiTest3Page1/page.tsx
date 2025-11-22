@@ -35,6 +35,6 @@ export default function AiTest3Page1() {
           />
         </div>
       </div>
-    </div>
-  );
+    </div>
+  );
 }

@@ -15,7 +15,7 @@ export default function Ai3Q1() {
 
   const options = [
     "Germany",
-    "Canada", 
+    "Canada",
     "UK",
     "USA",
     "Australia",
@@ -35,7 +35,7 @@ export default function Ai3Q1() {
         country: selectedCountry,
         step: "career-education"
       };
-      
+
       const params = buildCareerParams(careerData);
       router.push(`/aiassistant/careerpathway?step=career-education&${params}`);
     } else {
